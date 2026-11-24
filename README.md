@@ -1,5 +1,9 @@
 # 慧眼 HuiYan · 拍照识物生活助手
 
+[![test](https://github.com/wushiyi105-jpg/huiyan/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/huiyan/actions)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 ![demo](assets/demo.gif)
 
 > 拍一张图——体检报告、药品说明、衣服标签、配料表、植物……它识别内容并给出解读与建议。
