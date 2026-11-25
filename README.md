@@ -1,8 +1,6 @@
 # 慧眼 HuiYan · 拍照识物生活助手
 
-[![test](https://github.com/wushiyi105-jpg/huiyan/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/huiyan/actions)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/huiyan/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/huiyan/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/huiyan/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/huiyan)
 
 ![demo](assets/demo.gif)
 
@@ -74,6 +72,21 @@ python -m huiyan --json 体检报告.png    # 输出原始 JSON
 ```
 
 可调用的 4 个工具:`save_metric`、`query_metrics`、`save_note`、`list_notes`。
+
+### 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[照片 + 问题] --> B[agent.py<br/>图片转 data URL]
+    B --> C[llm.py<br/>多模态：看图并决定调工具]
+    C --> D[tools.py<br/>execute_tool]
+    D --> E[db.py<br/>记识物 · 查健康指标]
+    E --> F[agent.py<br/>结果回填]
+    F -->|还要继续| C
+    F -->|给结论| G[cli.py / web.py]
+```
 
 ## 🔌 模型接入
 

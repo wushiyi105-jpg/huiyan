@@ -7,7 +7,8 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from huiyan import agent, db as dbmod, llm, mock, tools  # noqa: E402
+from huiyan import agent, llm, mock, tools
+from huiyan import db as dbmod
 
 
 class TestDB(unittest.TestCase):
