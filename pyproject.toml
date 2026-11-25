@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "huiyan"
+version = "0.1.0"
+description = "慧眼 HuiYan · 拍照识物生活助手 —— 拍照识别体检报告/药品/标签并解读"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+huiyan = "huiyan.cli:main"
+
+[tool.setuptools]
+packages = ["huiyan"]
