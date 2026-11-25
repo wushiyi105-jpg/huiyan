@@ -109,7 +109,7 @@ huiyan/
 │   ├── tools.py    # 工具定义与执行器
 │   ├── db.py       # SQLite 健康指标 + 识物记录(线程安全,跨会话)
 │   ├── llm.py      # LLM 客户端(OpenAI 风格接口 + .env 加载 + 空响应重试)
-│   ├── mock.py     # 离线回退(仅演示/测试)
+│   ├── mock.py     # 离线回退(兜底/测试)
 │   ├── cli.py      # 命令行入口
 │   ├── web.py      # Web 界面(图片上传 + 步骤可视化)
 │   └── __main__.py

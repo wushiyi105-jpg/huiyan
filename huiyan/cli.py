@@ -11,7 +11,7 @@ from . import db as dbmod
 from .llm import LLMError
 
 MOCK_BANNER = (
-    "⚠️  当前为离线演示模式(未配置 LLM_API_KEY)。图片识别需要视觉模型,\n"
+    "⚠️  当前为离线模式(未配置 LLM_API_KEY)。图片识别需要视觉模型,\n"
     "   在 .env 填入 LLM_API_KEY 后即可;离线模式仅支持纯文字记录。\n"
 )
 
@@ -80,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="慧眼 · 拍照识物生活助手:拍一张图,识别内容并给出解读与建议。",
     )
     p.add_argument("--version", action="version", version=f"huiyan {__version__}")
-    p.add_argument("--mock", action="store_true", help="强制离线演示模式(不调用模型)")
+    p.add_argument("--mock", action="store_true", help="强制离线模式(不调用模型)")
     p.add_argument("--json", action="store_true", help="以 JSON 输出原始结果")
     p.add_argument("--model", help="覆盖 LLM_MODEL")
     p.add_argument("--base-url", help="覆盖 LLM_BASE_URL")

@@ -1,7 +1,7 @@
-"""离线演示模式:无 API key 时的回退。
+"""离线模式:无 API key 时的回退。
 
 图片识别依赖视觉模型,离线无法完成,故给出友好提示;纯文本的
-「记录/查询」指令仍可离线处理,供演示与单元测试使用。
+「记录/查询」指令仍可离线处理,供离线使用与单元测试。
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ def run(image_path: str, question: str, db: dbmod.Database) -> dict:
 
     if image_path:
         return {
-            "answer": "离线演示模式不支持图片识别(需要视觉模型)。请配置 LLM_API_KEY 后重试;\n"
+            "answer": "离线模式不支持图片识别(需要视觉模型)。请配置 LLM_API_KEY 后重试;\n"
                       "或者你也可以直接文字告诉我,比如「记录我的体重 65kg」。",
             "steps": steps,
         }

@@ -107,7 +107,7 @@ huiyan/
 │   ├── tools.py    # tool definitions and executor
 │   ├── db.py       # SQLite health metrics + recognition records (thread safe, cross-session)
 │   ├── llm.py      # LLM client (OpenAI-style API + .env loading + empty-response retry)
-│   ├── mock.py     # offline fallback (demo / tests only)
+│   ├── mock.py     # offline fallback (rule engine / tests)
 │   ├── cli.py      # command line entry
 │   ├── web.py      # Web UI (image upload + step visualisation)
 │   └── __main__.py
