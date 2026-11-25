@@ -38,6 +38,13 @@ python -m huiyan 体检报告.png "有什么要注意的?"
 It talks to DeepSeek by default (the cheapest, `deepseek-flash`).
 > **⚠️ The project carries no API key of its own — put in your own** (`.env` is already gitignored and never committed).
 
+Run in Docker (the container uses the default port 8000):
+
+```bash
+docker build -t huiyan .
+docker run -p 8000:8000 huiyan
+```
+
 ## 📖 Command reference
 
 ```bash
@@ -57,6 +64,46 @@ python -m huiyan --json 体检报告.png    # raw JSON output
 ```
 
 Supports jpg/png/webp, one image under 5MB is recommended.
+
+## 🤔 Why not just ask a general LLM
+
+A general model can look at a lab report and say "your blood sugar is high". Huiyan adds the three things it cannot do:
+
+1. **Indicators you can compare** — blood pressure, glucose, lipids and weight are extracted into structured "value + unit" records in SQLite. Photograph the same kind of report next time and it compares automatically: "up 0.4 from last time". A chat model re-reads the image each time, remembers no previous value and cannot convert units.
+2. **Data stays local** — lab reports, drug leaflets and label photos carry personal information; the images and extracted indicators stay in `data/huiyan.db` and are never synced. A model call sends only the current image and question.
+3. **Reproducible results** — unit normalisation, trend calculation and storage happen locally, so the same history computes the same conclusion twice; the model only says what the image is and what it says, never does the subtraction.
+4. **Structured output** — detected type, extracted indicators and comparison with the previous record come back as fixed fields, and `--json` feeds other programs. A chat answer gives prose you would have to retype into a table.
+
+## 🎯 Use cases
+
+- **File a check-up report the day it arrives**: photograph the sheet and blood pressure, glucose and lipids enter the database; photograph the follow-up three months later and see which item rose and by how much, instead of laying two printouts side by side.
+- **A drug leaflet too small to read**: photograph it and get dosage, contraindications and cautions — useful when the print is tiny or the leaflet is already lost.
+- **Checking what you are buying**: fabric and washing instructions from a clothing label, or what the first ingredients of a food label actually are, from one photo.
+
+## 🗺 Roadmap
+
+- **Broader unit table**: cover more lab items with units and reference ranges, so "is this value high" is less vague.
+- **Merge multi-page reports**: combine several pages of one check-up into a single record instead of one record per page.
+- **Link to the medicine box**: pass dosages from drug leaflets into Kangji's records so the two do not each hold half the story.
+- **Trend export**: write the history of one indicator to CSV for a follow-up appointment.
+- **Delete originals in one step**: keep the indicators, drop the photos, and reduce what is retained.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+A vision model is required: register with Zhipu and use a multimodal key such as `glm-4.6v-flashx`, put it in `.env` as `LLM_API_KEY` (or set `VISION_API_KEY` separately). A text-only model cannot read images.
+
+**Where is data stored, and is it uploaded?**
+In `data/huiyan.db`, a single SQLite file holding recognition records and indicators on this machine. A model call sends the current image and question, not your history.
+
+**Does it work without a key?**
+Reading a new image requires a model; offline you can only browse records already stored. That is the boundary, and it is not papered over.
+
+**How do I switch models?**
+Change `VISION_BASE_URL`, `VISION_MODEL` and `VISION_API_KEY` (or the matching `LLM_` variables) as shown in `.env.example`; switching multimodal providers needs no code change.
+
+**Can I trust the extracted numbers?**
+As a reference, not a conclusion. Blurred photos and mixed units can be misread, so the recognised text is shown next to each indicator. For medication and diagnosis, the doctor and the original report still decide.
 
 ## 🧠 How it works (multi-step tool calls + vision)
 
