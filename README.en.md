@@ -2,7 +2,7 @@
 
 [![test](https://github.com/wushiyi105-jpg/huiyan/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/huiyan/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/huiyan/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/huiyan)
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 > Take one picture — a health check report, a medicine leaflet, a clothing label, an ingredient list, a plant… it reads the content and gives you a reading plus advice.
 
