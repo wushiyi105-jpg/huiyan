@@ -14,7 +14,7 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>慧眼 · 拍照识物生活助手</title>
+<title>慧眼 · 两张标签差在哪</title>
 <style>
   :root {
     --bg:#f4f7fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
@@ -63,11 +63,70 @@ PAGE = """<!doctype html>
   .rec:last-child { border-bottom:none; }
   .rec .d { color:var(--muted); }
   .empty { color:var(--muted); font-size:13px; }
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0 0 20px;border:1px solid var(--line);background:var(--line)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#edf0f1;color:#1c2427;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:940px}
+header{background:#20282b;color:#f7fafb;padding:24px 24px 22px;margin-bottom:20px;border-bottom:5px solid #d76a26}
+header h1{font-size:38px;line-height:1.25;letter-spacing:-.02em}
+header p{color:#c9d2d5;font-size:14px}
+.card{background:#fff;border:1px solid #c9d3d7;border-radius:2px;box-shadow:0 1px 0 #dde5e7}
+button{background:#d76a26;border-radius:2px;letter-spacing:.05em}
+button:hover{background:#bf5a1c}
+textarea,input,select{background:#fbfcfc;border-color:#c2ced3;border-radius:2px}
+textarea:focus,input:focus,select:focus{border-color:#d76a26;box-shadow:0 0 0 2px #f0d9ca}
+.item{border-left:3px solid #d76a26}
+h3{color:#35535e;letter-spacing:.08em}
+
+
+/* palette-normalized */
+:root{--bg:#edf0f1;--card:#ffffff;--ink:#1c2427;--text:#1c2427;--dim:#657277;--line:#c9d3d7;--accent:#d76a26}
+
+/* polish-batch1 */
+button.ghost,button.secondary{background:transparent!important;color:#d76a26!important;border:1px solid #c9d3d7!important}
+header{display:block!important}
+header h1{font-size:38px!important;line-height:1.25!important}
+
+/* mobile-32 */
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #c9d3d7;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><h1>慧眼 · 拍照识物生活助手</h1><span class="badge" id="badge">…</span></header>
+  <header><h1><span class="prod">慧眼</span>这两张标签，差在哪</h1><span class="badge" id="badge">…</span>
+    <p class="lede">给比对配料或营养表的家庭：每个字段标出原图位置、单位和识别状态，手改后重新计算，模糊字段要求重拍。</p>
+  </header>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>拍两张标签</span><span><b>02</b>逐项核对</span><span><b>03</b>给出差异</span></div>
+
   <p class="sub">拍一张图——体检报告、药品说明、衣服标签、配料表、植物……它识别内容并给出解读与建议。</p>
 
   <div class="grid">
